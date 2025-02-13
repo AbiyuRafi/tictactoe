@@ -1,94 +1,246 @@
+/* Reset dasar */
 * {
-    color: white;
-    font-family: sans-serif;
-    transition: 0.2s ease-in-out;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
     user-select: none;
 }
 
-.align {
+/* Latar belakang dengan gradien kompleks */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
-body {
-    background-color: #252A34;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    text-align: center;
-    padding-top: 5vh;
+/* Container utama */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
 }
 
-.turn-container {
-    width: 170px;
-    height: 80px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    position: relative;
+/* Judul */
+.title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff5733;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.turn-container h3 {
-    margin: 0;
-    grid-column-start: 1;
-    grid-column-end: 3;
+/* Indikator giliran */
+.turn-indicator {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.turn-container .turn-box {
-    border: 3px solid #000;
+.turn-symbol {
     font-size: 1.6rem;
-    font-weight: 700;
+    color: #ff5733;
+    font-weight: bold;
+    animation: pulse 0.6s infinite alternate;
 }
 
-.turn-container .turn-box:nth-child(even) {
-    border-right: none;
-}
-
-.bg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 85px;
-    height: 40px;
-    background-color: #FF2E63;
-    z-index: -1;
-}
-
+/* Grid utama */
 .main-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    height: 250px;
-    width: 250px;
-    margin: 30px auto;
-    border: 2px solid #000;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff5733, #ff8c42);
+    padding: 12px;
+    border-radius: 12px;
 }
 
+/* Kotak permainan */
 .box {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    font-size: 2.8rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 2rem;
-    font-weight: 700;
-    border: 2px solid #000;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .box:hover {
-    background-color: #FF2E63;
+    background: #ffe0b2;
+    transform: scale(1.1);
 }
 
+/* Warna kotak pemenang */
+.winning-box {
+    background: #ffeb3b !important;
+    color: #000 !important;
+    animation: blink 0.5s infinite alternate;
+}
+
+/* Efek berkedip */
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+/* Tombol Play Again */
 #play-again {
-    background-color: #FF2E63;
-    padding: 10px 25px;
-    border: none;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
     display: none;
+    background: linear-gradient(135deg, #ff5733, #ff8c42);
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 #play-again:hover {
-    padding: 10px 40px;
-    background-color: #08D9D6;
-    color: #000;
+    background: linear-gradient(135deg, #ff3e00, #ff6500);
+    transform: scale(1.1);
+}
+
+.home-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+}
+
+/* Konten utama */
+.content {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+/* Judul */
+h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: #ffeb3b;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Grup tombol */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+/* Tombol */
+.btn {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #4CAF50, #66bb6a);
+    color: white;
+}
+
+.rules-btn {
+    background: linear-gradient(135deg, #ffeb3b, #ffca28);
+    color: black;
+}
+
+/* Hover tombol */
+.btn:hover {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+body.rules {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+/* Container utama */
+.container.rules {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+/* Judul */
+.container.rules h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffeb3b;
+    text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Daftar aturan */
+.container.rules ul {
+    list-style: none;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Tombol kembali */
+.btn.back-btn {
+    background: linear-gradient(135deg, #ffeb3b, #ffca28);
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    margin-top: 20px;
+}
+
+.btn.back-btn:hover {
+    background: linear-gradient(135deg, #ffca28, #ffb300);
+    transform: scale(1.1);
+    opacity: 0.9;
 }

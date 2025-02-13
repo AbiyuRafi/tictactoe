@@ -1,80 +1,65 @@
 let boxes = document.querySelectorAll(".box");
-
 let turn = "X";
 let isGameOver = false;
+let clickSound = new Audio("click.mp3");
+let winSound = new Audio("win.mp3");
 
-boxes.forEach(e =>{
-    e.innerHTML = ""
-    e.addEventListener("click", ()=>{
-        if(!isGameOver && e.innerHTML === ""){
-            e.innerHTML = turn;
-            cheakWin();
-            cheakDraw();
-            changeTurn();
-        }
-    })
-})
-
-function changeTurn(){
-    if(turn === "X"){
-        turn = "O";
-        document.querySelector(".bg").style.left = "85px";
-    }
-    else{
-        turn = "X";
-        document.querySelector(".bg").style.left = "0";
-    }
+function changeTurn() {
+    turn = turn === "X" ? "O" : "X";
+    document.getElementById("turn-symbol").innerText = turn;
 }
 
-function cheakWin(){
+function checkWin() {
     let winConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
         [0, 4, 8], [2, 4, 6]
-    ]
-    for(let i = 0; i<winConditions.length; i++){
-        let v0 = boxes[winConditions[i][0]].innerHTML;
-        let v1 = boxes[winConditions[i][1]].innerHTML;
-        let v2 = boxes[winConditions[i][2]].innerHTML;
+    ];
 
-        if(v0 != "" && v0 === v1 && v0 === v2){
+    winConditions.forEach(condition => {
+        let [a, b, c] = condition;
+        if (boxes[a].innerText && boxes[a].innerText === boxes[b].innerText && boxes[a].innerText === boxes[c].innerText) {
             isGameOver = true;
-            document.querySelector("#results").innerHTML = turn + " win";
-            document.querySelector("#play-again").style.display = "inline"
-
-            for(j = 0; j<3; j++){
-                boxes[winConditions[i][j]].style.backgroundColor = "#08D9D6"
-                boxes[winConditions[i][j]].style.color = "#000"
-            }
+            boxes[a].classList.add("winning-box");
+            boxes[b].classList.add("winning-box");
+            boxes[c].classList.add("winning-box");
+            document.getElementById("results").innerText = turn + " Wins! 🎉";
+            document.getElementById("play-again").style.display = "inline";
+            winSound.play();
         }
+    });
+}
+
+function checkDraw() {
+    if ([...boxes].every(box => box.innerText !== "") && !isGameOver) {
+        document.getElementById("results").innerText = "It's a Draw! 😅";
+        document.getElementById("play-again").style.display = "inline";
+        isGameOver = true;
     }
 }
 
-function cheakDraw(){
-    if(!isGameOver){
-        let isDraw = true;
-        boxes.forEach(e =>{
-            if(e.innerHTML === "") isDraw = false;
-        })
-
-        if(isDraw){
-            isGameOver = true;
-            document.querySelector("#results").innerHTML = "Draw";
-            document.querySelector("#play-again").style.display = "inline"
+boxes.forEach(box => {
+    box.addEventListener("click", () => {
+        if (!isGameOver && box.innerText === "") {
+            box.innerText = turn;
+            box.style.color = turn === "X" ? "#ff3e7f" : "#00bcd4";
+            clickSound.play();
+            checkWin();
+            checkDraw();
+            if (!isGameOver) changeTurn();
         }
-    }
-}
+    });
+});
 
-document.querySelector("#play-again").addEventListener("click", ()=>{
+document.getElementById("play-again").addEventListener("click", () => {
     isGameOver = false;
     turn = "X";
-    document.querySelector(".bg").style.left = "0";
-    document.querySelector("#results").innerHTML = "";
-    document.querySelector("#play-again").style.display = "none";
+    document.getElementById("turn-symbol").innerText = "X";
+    document.getElementById("results").innerText = "";
+    document.getElementById("play-again").style.display = "none";
 
-    boxes.forEach(e =>{
-        e.innerHTML = "";
-        e.style.removeProperty("background-color");
-        e.style.color = "#fff"
-    })
-})
+    boxes.forEach(box => {
+        box.innerText = "";
+        box.classList.remove("winning-box");
+    });
+});
