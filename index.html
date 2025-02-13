@@ -2,34 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Tic Tac Toe - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="turn-container">
-        <h3>Turn For</h3>
-        <div class="turn-box align">X</div>
-        <div class="turn-box align">O</div>
-        <div class="bg"></div>
+    <div class="home-container">
+        <div class="content">
+            <h1>Welcome to <span class="highlight">Tic Tac Toe</span> 🎮</h1>
+            <p class="subtitle">Play, strategize, and have fun with friends!</p>
+            <div class="button-group">
+                <button class="btn start-btn" onclick="location.href='game.html'">🎮 Start Game</button>
+                <button class="btn rules-btn" onclick="location.href='rules.html'">📜 Rules</button>
+            </div>
+        </div>
     </div>
-    <div class="main-grid">
-        <div class="box align">0</div>
-        <div class="box align">1</div>
-        <div class="box align">2</div>
-        <div class="box align">3</div>
-        <div class="box align">4</div>
-        <div class="box align">5</div>
-        <div class="box align">6</div>
-        <div class="box align">7</div>
-        <div class="box align">8</div>
-    </div>
-    <h2 id="results"></h2>
-    <button id="play-again">Play Again</button>
-    
-    <!-- <audio id="click-sound" src="mouse-clicks-6849.mp3"></audio> -->
-    
-    <script src="script.js"></script>
 </body>
 </html>
